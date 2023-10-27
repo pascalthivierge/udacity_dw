@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>pthivierge_wrangling</title>
+      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); border-image: initial; background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; margin-left: auto; margin-right: auto; margin-top: 5em; margin-bottom: 5em; font-size: 16px; color: #abb2bf; background-color: rgb(40, 44, 52); overflow: scroll; width: 960px;}
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.0392157); border-radius: 3px; }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(49, 54, 63); border-radius: 3px; }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; word-wrap: break-word; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
+.markdown-preview .task-list-item-checkbox { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher {
+  background-color: #777;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region {
+  border-radius: 2px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #abb2bf;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #5c6370;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #98c379;
+}
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--control {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #61afef;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #d19a66;
+}
+.syntax--storage {
+  color: #c678dd;
+}
+.syntax--storage.syntax--type.syntax--annotation,
+.syntax--storage.syntax--type.syntax--primitive {
+  color: #c678dd;
+}
+.syntax--storage.syntax--modifier.syntax--package,
+.syntax--storage.syntax--modifier.syntax--import {
+  color: #abb2bf;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--variable {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #56b6c2;
+}
+.syntax--variable {
+  color: #e06c75;
+}
+.syntax--variable.syntax--interpolation {
+  color: #be5046;
+}
+.syntax--variable.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string.syntax--regexp {
+  color: #56b6c2;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #e5c07b;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #e06c75;
+}
+.syntax--punctuation.syntax--definition.syntax--comment {
+  color: #5c6370;
+}
+.syntax--punctuation.syntax--definition.syntax--method-parameters,
+.syntax--punctuation.syntax--definition.syntax--function-parameters,
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--separator,
+.syntax--punctuation.syntax--definition.syntax--seperator,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #61afef;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #be5046;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #abb2bf;
+}
+.syntax--support.syntax--class {
+  color: #e5c07b;
+}
+.syntax--support.syntax--type {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #d19a66;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #61afef;
+}
+.syntax--meta.syntax--class {
+  color: #e5c07b;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--definition.syntax--variable {
+  color: #e06c75;
+}
+.syntax--meta.syntax--link {
+  color: #d19a66;
+}
+.syntax--meta.syntax--require {
+  color: #61afef;
+}
+.syntax--meta.syntax--selector {
+  color: #c678dd;
+}
+.syntax--meta.syntax--separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.syntax--meta.syntax--tag {
+  color: #abb2bf;
+}
+.syntax--underline {
+  text-decoration: underline;
+}
+.syntax--none {
+  color: #abb2bf;
+}
+.syntax--invalid.syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--invalid.syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #61afef;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--quote {
+  color: #d19a66;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--source.syntax--c .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cpp .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--css .syntax--property-name,
+.syntax--source.syntax--css .syntax--property-value {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--property-name.syntax--support,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--source.syntax--embedded.syntax--source {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--constant.syntax--language,
+.syntax--source.syntax--elixir .syntax--constant.syntax--numeric,
+.syntax--source.syntax--elixir .syntax--constant.syntax--definition {
+  color: #61afef;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--definition,
+.syntax--source.syntax--elixir .syntax--variable.syntax--anonymous {
+  color: #c678dd;
+}
+.syntax--source.syntax--elixir .syntax--quoted {
+  color: #98c379;
+}
+.syntax--source.syntax--elixir .syntax--keyword.syntax--special-method,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--section,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--source.syntax--empty {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--readwrite.syntax--module .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--regexp.syntax--section,
+.syntax--source.syntax--elixir .syntax--regexp.syntax--string {
+  color: #be5046;
+}
+.syntax--source.syntax--elixir .syntax--separator,
+.syntax--source.syntax--elixir .syntax--keyword.syntax--operator {
+  color: #d19a66;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--constant {
+  color: #e5c07b;
+}
+.syntax--source.syntax--elixir .syntax--array,
+.syntax--source.syntax--elixir .syntax--scope,
+.syntax--source.syntax--elixir .syntax--section {
+  color: #828997;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #61afef;
+}
+.syntax--source.syntax--go .syntax--storage.syntax--type.syntax--string {
+  color: #c678dd;
+}
+.syntax--source.syntax--ini .syntax--keyword.syntax--other.syntax--definition.syntax--ini {
+  color: #e06c75;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--modifier.syntax--import {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--type {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--keyword.syntax--operator.syntax--instanceof {
+  color: #c678dd;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair {
+  color: #e06c75;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair > .syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--delete,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--in,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--of,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--instanceof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--new,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--typeof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
+  color: #c678dd;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #56b6c2;
+}
+.syntax--source.syntax--ruby .syntax--constant.syntax--other.syntax--symbol > .syntax--punctuation {
+  color: inherit;
+}
+.syntax--source.syntax--python .syntax--keyword.syntax--operator.syntax--logical.syntax--python {
+  color: #c678dd;
+}
+.syntax--source.syntax--python .syntax--variable.syntax--parameter {
+  color: #d19a66;
+}
+</style>
+  </head>
+  <body class='markdown-preview' data-use-github-style><h1 id="-center-openstreetmap-data-case-study-qu-bec-city-center-"><center>OpenStreetMap Data Case Study: Québec City</center></h1>
+<p><strong></strong></p><p></p><center><strong>by Pascal Thivierge</strong></center><p></p><p></p>
+<center><img alt="" src="quebec_city.jpg"></center>
+
+<p><strong></strong></p><p></p><center><strong>Data Wrangling Course Project</strong></center><p></p><p></p>
+<p></p><center>Udacity, Data Analyst Nanodegree Program</center>
+<center>December 2017</center><p></p>
+
+<h2 id="map-area">Map Area</h2>
+<p>Québec (Québec), Canada</p>
+<p><a href="https://www.openstreetmap.org/node/30915641">https://www.openstreetmap.org/node/30915641</a></p>
+<p><a href="https://mapzen.com/data/metro-extracts/your-extracts/0ad8cbd03a02">https://mapzen.com/data/metro-extracts/your-extracts/0ad8cbd03a02</a><br><sup><em>You need an account to download this custom extract</em></sup></p>
+<p>Originally the oldest European settlement in North America, <a href="https://en.wikipedia.org/wiki/Quebec_City">Québec City</a>, located in Canada, is the only remaining fortified city walls north of Mexico. It was founded in 1608 by Samuel de Champlain, making it one of the oldest cities in North America. It has been the theatre of the Battle of the Plains of Abraham, and even if New France was ceded to the Britains in 1763, the territory is still strongly francophone.</p>
+<p><img alt="" src="pano_quebec_city.jpg">
+Panorama of Quebec City from Levis (<a href="https://commons.wikimedia.org/wiki/File:Pano_Quebec_city.jpg">by Datch78</a>)</p>
+<p>Since the 1970's, the chosen language of display signs within the province of Québec is French, and it makes this part of the country very interesting to visit. However, using datasets from this province along with that from other provinces would bring an additional challenge.</p>
+<h2 id="problems-encountered-in-the-map">Problems Encountered in the Map</h2>
+<p>After reading the documentation about the three primitive components of OpenStreetMap's conceptual data model, it is easier to understand what information we can get from the dataset. The node is used to describe a single point on the earth's surface, while the way is an ordered list of nodes that defines a polyline. A relation documents the relationship between two or more data elements (nodes, ways or relations).</p>
+<p>As the OSM file of the city is only about 150MB, it was not a problem to open it in fast text editor as SublimeText3. The Unix-like shell could also be used with the <code>less</code> command, considered a more powerful version of the <code>more</code> command which is used to display information one page at a time.</p>
+<h3 id="road-names">Road names</h3>
+<p>In French, the road name is not necessarily followed by its type, as it is in English. It causes a lot of problems for auditing, because it follows the structure of French language.</p>
+<p>As an example, the word "rue" in French (which means "street" in English) is commonly seen before the actual street name, as in <code>rue Principale</code>. But the audit showed many cases like <code>48e Rue Ouest</code> and the even weirder <code>6e Rue de l'Aéroport</code>, which for the latter is in fact the whole name!</p>
+<p>Another case is the word "allée" in French (which means "alley" in English), that can be seen before or within the name. For example, <code>allée des Gouverneurs</code> and <code>Grande Allée Est</code>.</p>
+<p>The same happens for the word "avenue" in French (which has the same meaning as in English), where it can be seen before and after the name. For example, <code>10e Avenue Est</code> and <code>avenue Saint-Pascal</code> (no, no, the latter is not about me).</p>
+<p>Not only is it hard to define the road types, but additionally, there are many different types of road used in this map area. Fortunately, using the <a href="https://www.canadapost.ca/tools/pg/manual/PGaddress-e.asp#1441964">guidelines</a> provided by Canada Post, it was possible to be aware of the many possible road types, along with their abbreviations. It was very handy.</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Allée&nbsp;(Alley)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALLÉE&nbsp;(ALLEY)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Autoroute&nbsp;(Highway)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUT&nbsp;(HWY)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Avenue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AV&nbsp;(AVE)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Boulevard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOUL&nbsp;(BLVD)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Carré&nbsp;(Square)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAR&nbsp;(SQ)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Chaussée&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Chemin&nbsp;(pathway)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CH&nbsp;&nbsp;(PTWAY)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Cours</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Croissant&nbsp;(Crescent)&nbsp;&nbsp;&nbsp;&nbsp;CROIS&nbsp;(CRES)&nbsp;&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Impasse&nbsp;(Cul-de-sac)&nbsp;&nbsp;&nbsp;&nbsp;IMP&nbsp;(CDS)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Montée&nbsp;(Rise)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MONTÉE&nbsp;(RISE)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Passage&nbsp;(Crossing)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PASS&nbsp;(CROSS)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Place&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PLACE&nbsp;(PL)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Quai&nbsp;(Quay)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QUAI&nbsp;(QUAY)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Rang&nbsp;(Row)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RANG&nbsp;(ROW)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Route&nbsp;(Road)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTE&nbsp;(RD)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Rue&nbsp;(Street)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RUE&nbsp;(ST)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Ruelle&nbsp;(Lane)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RLE&nbsp;(LANE)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Terrasse&nbsp;(Terrace)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TSSE&nbsp;(TERR)</span></span></div></pre><p>The way addresses are written in French does not follow the same guidelines as in English. The script <code>check_osm_roads.py</code> allows to pick up on some entries that contained English words.</p>
+<p>The official <a href="http://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp?t1=1&amp;id=5046">French address writing guideline</a>, from la Banque de dépannage linguistique du Québec, allows to denote the complexity of the rules. The <code>roadname_reformat</code> function addresses only abbreviation and capital letters problems in the <code>process_osm.py</code> script.</p>
+<h3 id="phone-numbers">Phone numbers</h3>
+<p>The script <code>check_osm_phone.py</code> checks for unrecognizable patterns in phone numbers. <a href="http://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp?t1=1&amp;id=3293">This guide</a> from la Banque de dépannage linguistique du Québec, was used to learn about official pattern. The <code>phone_num_reformat</code> function from  <code>process_osm.py</code> script addresses any phone formatting problems.</p>
+<h3 id="postal-codes">Postal codes</h3>
+<p>Postal codes formatting in Canada do not include the letters D, F, I, O, Q or U, and the first position also does not make use of the letters W or Z. Quebec city is located in the G district.</p>
+<p><img alt="" src="canada_postal_district_map.png"></p>
+<p>Map of postal districts in Canada (<a href="https://commons.wikimedia.org/wiki/File:Canadian_postal_district_map_(without_legends).svg">by Denelson83</a>)</p>
+<p>The script <code>check_osm_postcodes.py</code> looks for string that doesn't follow the canadian postal code formatting. Any problem is addressed by the  <code>postcode_reformat</code> function when running the <code>process_osm.py</code> script.</p>
+<h3 id="bank-and-atm-operators">Bank and ATM operators</h3>
+<p>In attempting to portray present banking operators in the region, several inconsistencies in how the data were entered quickly surfaced. For example, there were many inconsistencies in the way the name of institutions were entered in the "name" field. Sometimes the "brand" field was used, sometimes it was the "operator" field.</p>
+<p>The <code>bank_reformat</code> function from <code>process_osm.py</code> script identifies the bank operator using the "operator" field, finding clues in the fields listed above.</p>
+<h2 id="data-overview">Data Overview</h2>
+<h3 id="file-sizes">File sizes</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>quebec_city.osm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;154&nbsp;350&nbsp;Kb</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>quebec_city.json&nbsp;&nbsp;&nbsp;&nbsp;171&nbsp;338&nbsp;Kb</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>db.quebec_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;188&nbsp;595&nbsp;Kb</span></span></div></pre><h3 id="number-of-documents">Number of documents</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.find().count()</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>749&nbsp;321</span></span></div></pre><h3 id="number-of-nodes">Number of nodes</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.find({"type":"node"}).count()</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>653&nbsp;926</span></span></div></pre><h3 id="number-of-ways">Number of ways</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.find({"type":"way"}).count()</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>95&nbsp;220</span></span></div></pre><h3 id="number-of-unique-users">Number of unique users</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.distinct("created.user").length</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>700</span></span></div></pre><h3 id="top-5-contributing-users">Top 5 contributing users</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{"$group":{"_id":"$created.user",&nbsp;"count":{"$sum":1}}},&nbsp;{"$sort":{"count":-­1}},&nbsp;{"$limit":5}])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"BrunoRemy",&nbsp;"count"&nbsp;:&nbsp;216141&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"canvec_fsteggink",&nbsp;"count"&nbsp;:&nbsp;207041&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"fsteggink",&nbsp;"count"&nbsp;:&nbsp;50279&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"PierZen",&nbsp;"count"&nbsp;:&nbsp;32552&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"Circeus",&nbsp;"count"&nbsp;:&nbsp;27621&nbsp;}</span></span></div></pre><h3 id="tourism">Tourism</h3>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{"$match":{"tourism":{"$exists":1}&nbsp;}},{"$group":{"_id":"$tourism",&nbsp;"count":{"$sum":1}}},&nbsp;{"$sort":{"count":-1}}])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"hotel",&nbsp;"count"&nbsp;:&nbsp;93&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"picnic_site",&nbsp;"count"&nbsp;:&nbsp;72&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"viewpoint",&nbsp;"count"&nbsp;:&nbsp;56&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"artwork",&nbsp;"count"&nbsp;:&nbsp;37&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"motel",&nbsp;"count"&nbsp;:&nbsp;30&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"information",&nbsp;"count"&nbsp;:&nbsp;28&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"attraction",&nbsp;"count"&nbsp;:&nbsp;28&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"guest_house",&nbsp;"count"&nbsp;:&nbsp;26&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"museum",&nbsp;"count"&nbsp;:&nbsp;20&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"camp_site",&nbsp;"count"&nbsp;:&nbsp;17&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"caravan_site",&nbsp;"count"&nbsp;:&nbsp;4&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"hostel",&nbsp;"count"&nbsp;:&nbsp;3&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"gallery",&nbsp;"count"&nbsp;:&nbsp;3&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"inn",&nbsp;"count"&nbsp;:&nbsp;3&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"theme_park",&nbsp;"count"&nbsp;:&nbsp;1&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"spa",&nbsp;"count"&nbsp;:&nbsp;1&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"_id"&nbsp;:&nbsp;"yes",&nbsp;"count"&nbsp;:&nbsp;1&nbsp;}</span></span></div></pre><h3 id="financial-institutions">Financial institutions</h3>
+<p>The Desjardins Group (French: Mouvement des caisses Desjardins) is the largest association of credit unions in North America.</p>
+<p><img alt="" src="siege_social_desjardins.jpg"></p>
+<p>Head office of "La fédération des caisses du Québec" (<a href="https://commons.wikimedia.org/wiki/File:Canadian_postal_district_map_(without_legends).svg">by Bourgoinjp</a>)</p>
+<p> Although now based in Montreal, it was founded in 1900 in Lévis, a suburb of Quebec, by Alphonse Desjardins. Let's query for the top bank operator :</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{"$match":{"amenity":{"$exists":1},&nbsp;"$or":&nbsp;[{"amenity":"bank"},&nbsp;{"amenity":"atm"}],&nbsp;"operator":{"$exists":1}}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"operators":{"$push":"$operator"}}},&nbsp;{"$unwind":&nbsp;"$operators"},&nbsp;{"$group":{"_id":&nbsp;{"operator":"$operators",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"operator":&nbsp;"$_id.operator",&nbsp;"count":&nbsp;"$count"}},&nbsp;{"$sort":&nbsp;{"count":-1}},&nbsp;{"$limit":1}])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Caisses&nbsp;Desjardins",&nbsp;"count"&nbsp;:&nbsp;56&nbsp;}</span></span></div></pre><p>National Bank of Canada is the largest bank in Quebec, and the second largest financial institution in the province, after Desjardins. Let's query for the second top bank operator :</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{"$match":{"amenity":{"$exists":1},&nbsp;"$or":&nbsp;[{"amenity":"bank"},&nbsp;{"amenity":"atm"}],&nbsp;"operator":{"$exists":1}}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"operators":{"$push":"$operator"}}},&nbsp;{"$unwind":&nbsp;"$operators"},&nbsp;{"$group":{"_id":&nbsp;{"operator":"$operators",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"operator":&nbsp;"$_id.operator",&nbsp;"count":&nbsp;"$count"}},&nbsp;{"$sort":&nbsp;{"count":-1}},&nbsp;{"$skip":1},&nbsp;{"$limit":1}])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"National&nbsp;Bank&nbsp;of&nbsp;Canada",&nbsp;"count"&nbsp;:&nbsp;25&nbsp;}</span></span></div></pre><p>Things get very interesting when we compare proportionally the quantity of point of service each operator owns on the territory :</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{"$match":{"amenity":{"$exists":1},&nbsp;"$or":&nbsp;[{"amenity":"bank"},&nbsp;{"amenity":"atm"}],&nbsp;"operator":{"$exists":1}}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"operators":{"$push":"$operator"}}},&nbsp;{"$unwind":&nbsp;"$operators"},&nbsp;{"$group":{"_id":&nbsp;{"operator":"$operators",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"operator":&nbsp;"$_id.operator",&nbsp;"count":&nbsp;"$count",&nbsp;"proportion":&nbsp;{"$divide":&nbsp;[{&nbsp;"$trunc":&nbsp;{&nbsp;"$multiply":&nbsp;[&nbsp;{"$divide":&nbsp;["$count",&nbsp;"$_id.total"]&nbsp;}&nbsp;,&nbsp;100&nbsp;]}},&nbsp;100&nbsp;]}&nbsp;}},&nbsp;{"$sort":&nbsp;{"proportion":-1}}])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Caisses&nbsp;Desjardins",&nbsp;"count"&nbsp;:&nbsp;56,&nbsp;"proportion"&nbsp;:&nbsp;0.44&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"National&nbsp;Bank&nbsp;of&nbsp;Canada",&nbsp;"count"&nbsp;:&nbsp;25,&nbsp;"proportion"&nbsp;:&nbsp;0.19&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"TD&nbsp;Canada&nbsp;Trust",&nbsp;"count"&nbsp;:&nbsp;9,&nbsp;"proportion"&nbsp;:&nbsp;0.07&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Royal&nbsp;Bank&nbsp;of&nbsp;Canada",&nbsp;"count"&nbsp;:&nbsp;10,&nbsp;"proportion"&nbsp;:&nbsp;0.07&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Banque&nbsp;of&nbsp;Montreal",&nbsp;"count"&nbsp;:&nbsp;10,&nbsp;"proportion"&nbsp;:&nbsp;0.07&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Canadian&nbsp;Imperial&nbsp;Bank&nbsp;of&nbsp;Commerce",&nbsp;"count"&nbsp;:&nbsp;6,&nbsp;"proportion"&nbsp;:&nbsp;0.04&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Laurentian&nbsp;Bank&nbsp;of&nbsp;Canada",&nbsp;"count"&nbsp;:&nbsp;6,&nbsp;"proportion"&nbsp;:&nbsp;0.04&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"operator"&nbsp;:&nbsp;"Scotiabank&nbsp;Canada",&nbsp;"count"&nbsp;:&nbsp;5,&nbsp;"proportion"&nbsp;:&nbsp;0.03&nbsp;}</span></span></div></pre><h2 id="additional-statistics-and-suggestions">Additional statistics and suggestions</h2>
+<p>The use of a geospatial index makes it possible, among other things, to determine the distance that separates elements. It could be used to push a the analysis a step further, such as how historical past of the city influenced its evolution.</p>
+<p>The main advantage of using geolocation coordinates is to be able to use that information to draw a physical portray about any subject. The following investigation focuses on the small area (~ 2 km²) inside the red circle: this is the old city of Québec.</p>
+<p><img alt="" src="vieux-quebec.png"></p>
+<p>As the MongoDB reference manual specifies it, the <code>$geoNear</code> operator requires that a collection have at most only one 2dsphere and/or only one 2d index. Nodes of type "way" don't have the single point coordinate field "pos".</p>
+<p>The <code>set_pos_tourism.py</code> script calculate the mean of all point coordinates of referenced nodes for the all nodes with "type:way" and "tourism:<em>value</em>", then sets a new "pos" field with the result.</p>
+<p>In this case, the "pos" field was used to create both indexes:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.createIndex(&nbsp;{&nbsp;"pos":&nbsp;"2d"&nbsp;}&nbsp;)</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.createIndex(&nbsp;{&nbsp;"pos":&nbsp;"2dsphere"&nbsp;}&nbsp;)</span></span></div></pre><p>The following queries show the potential of using geospatial indexing to investigate OpenStreetMap datasets by filtering out the results that are located inside the old city of Québec and those that are not.</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Hotels</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([{&nbsp;"$geoNear":&nbsp;{&nbsp;"query":&nbsp;{"tourism":"hotel"},&nbsp;"near":&nbsp;{&nbsp;"type":&nbsp;"Point",&nbsp;"coordinates":&nbsp;[&nbsp;46.811575,&nbsp;-71.207725&nbsp;]&nbsp;&nbsp;},&nbsp;"distanceField":&nbsp;"qtd",&nbsp;"num":&nbsp;800000,&nbsp;"spherical":&nbsp;true&nbsp;}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"qtd":{"$push":"$qtd"}}},&nbsp;{"$unwind":&nbsp;"$qtd"},&nbsp;{"$project":&nbsp;{"range":&nbsp;{"$concat":&nbsp;[&nbsp;{&nbsp;$cond:&nbsp;[{$lte:&nbsp;["$qtd",&nbsp;1600]},&nbsp;"old-city",&nbsp;""]},&nbsp;{&nbsp;$cond:&nbsp;[{$gt:&nbsp;["$qtd",1600]},&nbsp;"else",&nbsp;""]}&nbsp;]&nbsp;},&nbsp;"total":"$total"&nbsp;}&nbsp;},&nbsp;{"$group":{"_id":&nbsp;{"location":"$range",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"location":&nbsp;"$_id.location",&nbsp;"count":&nbsp;"$count",&nbsp;"proportion":&nbsp;{"$divide":&nbsp;[{&nbsp;"$trunc":&nbsp;{&nbsp;"$multiply":&nbsp;[&nbsp;{"$divide":&nbsp;["$count",&nbsp;"$_id.total"]&nbsp;}&nbsp;,&nbsp;100&nbsp;]}},&nbsp;100&nbsp;]}&nbsp;}},&nbsp;{"$sort":&nbsp;{"count":1}}&nbsp;])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"old-city",&nbsp;"count"&nbsp;:&nbsp;44,&nbsp;"proportion"&nbsp;:&nbsp;0.47&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"else",&nbsp;"count"&nbsp;:&nbsp;49,&nbsp;"proportion"&nbsp;:&nbsp;0.52&nbsp;}</span></span></div></pre><pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Viewpoints</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([&nbsp;&nbsp;&nbsp;{&nbsp;"$geoNear":&nbsp;{&nbsp;"query":&nbsp;{"tourism":"viewpoint"},&nbsp;"near":&nbsp;{&nbsp;"type":&nbsp;"Point",&nbsp;"coordinates":&nbsp;[&nbsp;46.811575,&nbsp;-71.207725&nbsp;]&nbsp;&nbsp;},&nbsp;"distanceField":&nbsp;"qtd",&nbsp;"num":&nbsp;800000,&nbsp;"spherical":&nbsp;true&nbsp;}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"qtd":{"$push":"$qtd"}}},&nbsp;{"$unwind":&nbsp;"$qtd"},&nbsp;{"$project":&nbsp;{"range":&nbsp;{"$concat":&nbsp;[&nbsp;{&nbsp;$cond:&nbsp;[{$lte:&nbsp;["$qtd",&nbsp;1600]},&nbsp;"old-city",&nbsp;""]},&nbsp;{&nbsp;$cond:&nbsp;[{$gt:&nbsp;["$qtd",1600]},&nbsp;"else",&nbsp;""]}&nbsp;]&nbsp;},&nbsp;"total":"$total"&nbsp;}&nbsp;},&nbsp;{"$group":{"_id":&nbsp;{"location":"$range",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"location":&nbsp;"$_id.location",&nbsp;"count":&nbsp;"$count",&nbsp;"proportion":&nbsp;{"$divide":&nbsp;[{&nbsp;"$trunc":&nbsp;{&nbsp;"$multiply":&nbsp;[&nbsp;{"$divide":&nbsp;["$count",&nbsp;"$_id.total"]&nbsp;}&nbsp;,&nbsp;100&nbsp;]}},&nbsp;100&nbsp;]}&nbsp;}},&nbsp;{"$sort":&nbsp;{"count":1}}&nbsp;])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"old-city",&nbsp;"count"&nbsp;:&nbsp;20,&nbsp;"proportion"&nbsp;:&nbsp;0.35&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"else",&nbsp;"count"&nbsp;:&nbsp;36,&nbsp;"proportion"&nbsp;:&nbsp;0.64&nbsp;}</span></span></div></pre><pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Artworks</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([&nbsp;&nbsp;&nbsp;{&nbsp;"$geoNear":&nbsp;{&nbsp;"query":&nbsp;{"tourism":"artwork"},&nbsp;"near":&nbsp;{&nbsp;"type":&nbsp;"Point",&nbsp;"coordinates":&nbsp;[&nbsp;46.811575,&nbsp;-71.207725&nbsp;]&nbsp;&nbsp;},&nbsp;"distanceField":&nbsp;"qtd",&nbsp;"num":&nbsp;800000,&nbsp;"spherical":&nbsp;true&nbsp;}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"qtd":{"$push":"$qtd"}}},&nbsp;{"$unwind":&nbsp;"$qtd"},&nbsp;{"$project":&nbsp;{"range":&nbsp;{"$concat":&nbsp;[&nbsp;{&nbsp;$cond:&nbsp;[{$lte:&nbsp;["$qtd",&nbsp;1600]},&nbsp;"old-city",&nbsp;""]},&nbsp;{&nbsp;$cond:&nbsp;[{$gt:&nbsp;["$qtd",1600]},&nbsp;"else",&nbsp;""]}&nbsp;]&nbsp;},&nbsp;"total":"$total"&nbsp;}&nbsp;},&nbsp;{"$group":{"_id":&nbsp;{"location":"$range",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"location":&nbsp;"$_id.location",&nbsp;"count":&nbsp;"$count",&nbsp;"proportion":&nbsp;{"$divide":&nbsp;[{&nbsp;"$trunc":&nbsp;{&nbsp;"$multiply":&nbsp;[&nbsp;{"$divide":&nbsp;["$count",&nbsp;"$_id.total"]&nbsp;}&nbsp;,&nbsp;100&nbsp;]}},&nbsp;100&nbsp;]}&nbsp;}},&nbsp;{"$sort":&nbsp;{"count":1}}&nbsp;])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"old-city",&nbsp;"count"&nbsp;:&nbsp;13,&nbsp;"proportion"&nbsp;:&nbsp;0.36&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"else",&nbsp;"count"&nbsp;:&nbsp;23,&nbsp;"proportion"&nbsp;:&nbsp;0.63&nbsp;}</span></span></div></pre><pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>Attractions</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&gt;&nbsp;db.quebec_data.aggregate([&nbsp;&nbsp;&nbsp;{&nbsp;"$geoNear":&nbsp;{&nbsp;"query":&nbsp;{"tourism":"attraction"},&nbsp;"near":&nbsp;{&nbsp;"type":&nbsp;"Point",&nbsp;"coordinates":&nbsp;[&nbsp;46.811575,&nbsp;-71.207725&nbsp;]&nbsp;&nbsp;},&nbsp;"distanceField":&nbsp;"qtd",&nbsp;"num":&nbsp;800000,&nbsp;"spherical":&nbsp;true&nbsp;}},&nbsp;{"$group":{"_id":&nbsp;0,&nbsp;"total":{"$sum":1},&nbsp;"qtd":{"$push":"$qtd"}}},&nbsp;{"$unwind":&nbsp;"$qtd"},&nbsp;{"$project":&nbsp;{"range":&nbsp;{"$concat":&nbsp;[&nbsp;{&nbsp;$cond:&nbsp;[{$lte:&nbsp;["$qtd",&nbsp;1600]},&nbsp;"old-city",&nbsp;""]},&nbsp;{&nbsp;$cond:&nbsp;[{$gt:&nbsp;["$qtd",1600]},&nbsp;"else",&nbsp;""]}&nbsp;]&nbsp;},&nbsp;"total":"$total"&nbsp;}&nbsp;},&nbsp;{"$group":{"_id":&nbsp;{"location":"$range",&nbsp;"total":"$total"},&nbsp;"count":{"$sum":1}}},&nbsp;{"$project":{"_id":&nbsp;0,&nbsp;"location":&nbsp;"$_id.location",&nbsp;"count":&nbsp;"$count",&nbsp;"proportion":&nbsp;{"$divide":&nbsp;[{&nbsp;"$trunc":&nbsp;{&nbsp;"$multiply":&nbsp;[&nbsp;{"$divide":&nbsp;["$count",&nbsp;"$_id.total"]&nbsp;}&nbsp;,&nbsp;100&nbsp;]}},&nbsp;100&nbsp;]}&nbsp;}},&nbsp;{"$sort":&nbsp;{"count":1}}&nbsp;])</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"old-city",&nbsp;"count"&nbsp;:&nbsp;9,&nbsp;"proportion"&nbsp;:&nbsp;0.33&nbsp;}</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>{&nbsp;"location"&nbsp;:&nbsp;"else",&nbsp;"count"&nbsp;:&nbsp;18,&nbsp;"proportion"&nbsp;:&nbsp;0.66&nbsp;}</span></span></div></pre><p>Another suggestion would be to add historical data about road names. Not only the signification affects how the name is written, but it could also be used to geographically depict the influence of historical past over urbanism.</p></body>
+</html>
